@@ -1,0 +1,20 @@
+{
+    "name": "Fishing",
+    "short_name": "Fishing",
+    "description": "Detector de posibles señales de phishing mediante imágenes.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#eef7f8",
+    "theme_color": "#087f8c",
+    "orientation": "portrait",
+    "lang": "es-MX",
+
+    "icons": [
+        {
+            "src": "./assets/Icono app.jpeg",
+            "sizes": "512x512",
+            "type": "image/jpeg",
+            "purpose": "any"
+        }
+    ]
+}
