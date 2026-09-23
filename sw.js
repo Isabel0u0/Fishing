@@ -1,116 +1,62 @@
-const CACHE_NAME = "fishing-v3";
+```javascript
+const CACHE_NAME = "fishing-v1";
 
-
-const ARCHIVOS = [
-
+const FILES_TO_CACHE = [
     "./",
     "./index.html",
     "./styles.css",
-    "./manifest.json",
-
-    /* IMÁGENES */
-
-    "./assets/Icono app.jpeg",
-    "./assets/Pez.jpeg",
-    "./assets/Cola de pez.jpeg",
-    "./assets/Tiburon lateral.jpeg",
-    "./assets/Tiburon mordida.jpeg",
-
-    /* AUDIO */
-
-    "./assets/Beach party.mp4",
-    "./assets/Sonido riesgo bajo.mp4",
-    "./assets/Sonido riesgo medio.mp4",
-    "./assets/Sonido riesgo alto.mp4"
-
+    "./manifest.json"
 ];
 
+self.addEventListener("install", function (event) {
 
-self.addEventListener(
-    "install",
-    event => {
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(function (cache) {
+                return cache.addAll(FILES_TO_CACHE);
+            })
+    );
 
-        event.waitUntil(
-
-            caches.open(
-                CACHE_NAME
-            ).then(
-                cache => {
-
-                    return cache.addAll(
-                        ARCHIVOS
-                    );
-
-                }
-            )
-
-        );
-
-        self.skipWaiting();
-
-    }
-);
+    self.skipWaiting();
+});
 
 
-self.addEventListener(
-    "activate",
-    event => {
+self.addEventListener("activate", function (event) {
 
-        event.waitUntil(
+    event.waitUntil(
 
-            caches.keys().then(
-                keys => {
+        caches.keys().then(function (cacheNames) {
 
-                    return Promise.all(
+            return Promise.all(
 
-                        keys
-                            .filter(
-                                key =>
-                                    key !==
-                                    CACHE_NAME
-                            )
-                            .map(
-                                key =>
-                                    caches.delete(
-                                        key
-                                    )
-                            )
+                cacheNames
+                    .filter(function (cacheName) {
+                        return cacheName !== CACHE_NAME;
+                    })
+                    .map(function (cacheName) {
+                        return caches.delete(cacheName);
+                    })
 
-                    );
+            );
 
-                }
-            )
+        })
 
-        );
+    );
 
-        self.clients.claim();
-
-    }
-);
+    self.clients.claim();
+});
 
 
-self.addEventListener(
-    "fetch",
-    event => {
+self.addEventListener("fetch", function (event) {
 
-        event.respondWith(
+    event.respondWith(
 
-            caches.match(
-                event.request
-            ).then(
-                response => {
+        fetch(event.request)
+            .catch(function () {
+                return caches.match(event.request);
+            })
 
-                    return (
-                        response ||
-                        fetch(
-                            event.request
-                        )
-                    );
+    );
 
-                }
-            )
-
-        );
-
-    }
-);
+});
+```
