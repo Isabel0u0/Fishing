@@ -1,57 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#087f8c">
 
     <title>Fishing - Detector de Phishing</title>
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="manifest.json">
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="styles.css">
 
-    <meta name="theme-color" content="#087f8c">
+    <!-- PWA -->
+    <link rel="manifest"
+          href="manifest.json">
 
+    <!-- Tesseract OCR -->
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 </head>
 
 <body>
 
-    <!-- =========================
-         FONDO DE VIDEO
-    ========================== -->
+    <!-- =========================================
+         FONDO DEL OCÉANO
+    ========================================== -->
 
-    <video id="backgroundVideo" autoplay muted loop playsinline>
-        <source src="assets/assets/Fondo de app.mp4" type="video/mp4">
-    </video>
+    <div id="videoBackground">
+
+        <video id="backgroundVideo"
+               autoplay
+               muted
+               loop
+               playsinline>
+
+            <source
+                src="assets/assets/Fondo de app.mp4"
+                type="video/mp4">
+
+        </video>
+
+    </div>
 
 
-    <!-- =========================
+    <!-- =========================================
          ENCABEZADO
-    ========================== -->
+    ========================================== -->
 
     <header class="encabezado">
 
         <div>
+
             <h1>🎣 Fishing</h1>
-            <p>Detector educativo de phishing</p>
+
+            <p>
+                Detector educativo de phishing
+            </p>
+
         </div>
 
-        <button id="musicBtn" type="button">
+        <button id="musicBtn"
+                type="button">
+
             🔇 Música: OFF
+
         </button>
 
     </header>
 
 
-    <!-- =========================
-         CONTENIDO
-    ========================== -->
+    <!-- =========================================
+         CONTENIDO PRINCIPAL
+    ========================================== -->
 
     <main>
 
+
+        <!-- =====================================
+             INFORMACIÓN
+        ====================================== -->
+
         <section class="card">
 
-            <h2>🛡️ ¿Es phishing?</h2>
+            <h2>
+                🛡️ ¿Es phishing?
+            </h2>
 
             <p>
                 Sube una captura de pantalla de un mensaje,
@@ -61,118 +98,190 @@
             </p>
 
             <p>
-                <strong>⚠️ Importante:</strong>
-                esta herramienta es educativa y no garantiza
+
+                <strong>
+                    ⚠️ Importante:
+                </strong>
+
+                Esta herramienta es educativa y no garantiza
                 detectar todos los intentos de phishing.
+
             </p>
 
         </section>
 
 
-        <!-- =========================
-             SUBIR IMAGEN
-        ========================== -->
+        <!-- =====================================
+             ANALIZAR IMAGEN
+        ====================================== -->
 
         <section class="card">
 
-            <h2>📷 Analizar captura</h2>
+            <h2>
+                📷 Analizar captura
+            </h2>
 
             <input
                 type="file"
                 id="imageInput"
-                accept="image/*"
-            >
+                accept="image/*">
 
-            <div id="previewContainer" style="display:none;">
 
-                <h3>Vista previa</h3>
+            <!-- Vista previa -->
+
+            <div id="previewContainer"
+                 style="display: none;">
+
+                <h3>
+                    Vista previa
+                </h3>
 
                 <img
                     id="preview"
-                    alt="Vista previa"
-                >
+                    alt="Vista previa de la imagen">
 
             </div>
+
+
+            <!-- Botón analizar -->
 
             <button
                 id="analyzeBtn"
                 type="button"
-                disabled
-            >
+                disabled>
+
                 🔎 Analizar mensaje
+
             </button>
+
+
+            <!-- Estado OCR -->
 
             <p id="ocrStatus"></p>
 
         </section>
 
 
-        <!-- =========================
+        <!-- =====================================
              RESULTADO
-        ========================== -->
+        ====================================== -->
 
         <section
             class="card resultado"
             id="resultCard"
-            style="display:none;"
-        >
+            style="display: none;">
 
-            <h2>📊 Resultado</h2>
+            <h2>
+                📊 Resultado
+            </h2>
+
 
             <div id="riskBadge"></div>
 
+
             <p id="riskDescription"></p>
 
-            <h3>🔍 Señales detectadas</h3>
+
+            <h3>
+                🔍 Señales detectadas
+            </h3>
+
 
             <ul id="signalsList"></ul>
 
         </section>
 
 
-        <!-- =========================
+        <!-- =====================================
              ANIMACIÓN
-        ========================== -->
+        ====================================== -->
 
         <section
             class="card animation-card"
             id="animationCard"
-            style="display:none;"
-        >
+            style="display: none;">
 
-            <h2>🌊 Resultado visual</h2>
+            <h2>
+                🌊 Resultado visual
+            </h2>
+
 
             <div id="ocean">
 
-                <div class="bubble bubble1">🫧</div>
-                <div class="bubble bubble2">🫧</div>
-                <div class="bubble bubble3">🫧</div>
 
-                <div id="fish">🐟</div>
+                <!-- Burbujas -->
 
-                <div id="net">🕸️</div>
+                <div class="bubble bubble1">
+                    🫧
+                </div>
 
-                <div id="shark">🦈</div>
+                <div class="bubble bubble2">
+                    🫧
+                </div>
 
-                <div id="explosion">💥</div>
+                <div class="bubble bubble3">
+                    🫧
+                </div>
 
-                <div id="escapingFish">🐟</div>
 
-                <div id="success">✨🐠✨</div>
+                <!-- Pez -->
+
+                <div id="fish">
+                    🐟
+                </div>
+
+
+                <!-- Red -->
+
+                <div id="net">
+                    🕸️
+                </div>
+
+
+                <!-- Tiburón -->
+
+                <div id="shark">
+                    🦈
+                </div>
+
+
+                <!-- Explosión -->
+
+                <div id="explosion">
+                    💥
+                </div>
+
+
+                <!-- Pez escapando -->
+
+                <div id="escapingFish">
+                    🐟
+                </div>
+
+
+                <!-- Resultado positivo -->
+
+                <div id="success">
+                    ✨🐠✨
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- =========================
+        <!-- =====================================
              REINICIAR
-        ========================== -->
+        ====================================== -->
 
         <section class="card">
 
-            <button id="resetBtn" type="button">
+            <button
+                id="resetBtn"
+                type="button">
+
                 🔄 Analizar otra imagen
+
             </button>
 
         </section>
@@ -180,9 +289,9 @@
     </main>
 
 
-    <!-- =========================
+    <!-- =========================================
          PIE DE PÁGINA
-    ========================== -->
+    ========================================== -->
 
     <footer>
 
@@ -193,64 +302,72 @@
     </footer>
 
 
-    <!-- =========================
+    <!-- =========================================
          AUDIOS
-    ========================== -->
+    ========================================== -->
+
+    <!-- Música de fondo -->
 
     <audio
         id="bgMusic"
         loop
-        preload="auto"
-    >
+        preload="auto">
+
         <source
             src="assets/assets/Beach party.mp4"
-            type="audio/mp4"
-        >
+            type="audio/mp4">
+
     </audio>
 
+
+    <!-- Sonido riesgo bajo -->
 
     <audio
         id="lowSound"
-        preload="auto"
-    >
+        preload="auto">
+
         <source
             src="assets/assets/Sonido riesgo bajo.mp4"
-            type="audio/mp4"
-        >
+            type="audio/mp4">
+
     </audio>
 
+
+    <!-- Sonido riesgo medio -->
 
     <audio
         id="mediumSound"
-        preload="auto"
-    >
+        preload="auto">
+
         <source
             src="assets/assets/Sonido riesgo medio.mp4"
-            type="audio/mp4"
-        >
+            type="audio/mp4">
+
     </audio>
 
+
+    <!-- Sonido riesgo alto -->
 
     <audio
         id="highSound"
-        preload="auto"
-    >
+        preload="auto">
+
         <source
             src="assets/assets/Sonido riesgo alto.mp4"
-            type="audio/mp4"
-        >
+            type="audio/mp4">
+
     </audio>
 
 
-    <!-- =========================
+    <!-- =========================================
          JAVASCRIPT
-    ========================== -->
+    ========================================== -->
 
     <script>
 
-        // ==========================================
-        // ELEMENTOS
-        // ==========================================
+        /* =====================================
+           ELEMENTOS
+        ====================================== */
 
         const imageInput =
             document.getElementById("imageInput");
@@ -288,11 +405,6 @@
         const musicBtn =
             document.getElementById("musicBtn");
 
-
-        // ==========================================
-        // AUDIOS
-        // ==========================================
-
         const bgMusic =
             document.getElementById("bgMusic");
 
@@ -306,9 +418,9 @@
             document.getElementById("highSound");
 
 
-        // ==========================================
-        // IMAGEN
-        // ==========================================
+        /* =====================================
+           SELECCIONAR IMAGEN
+        ====================================== */
 
         imageInput.addEventListener(
             "change",
@@ -321,17 +433,22 @@
                     return;
                 }
 
+
                 const imageURL =
                     URL.createObjectURL(file);
+
 
                 preview.src =
                     imageURL;
 
+
                 previewContainer.style.display =
                     "block";
 
+
                 analyzeBtn.disabled =
                     false;
+
 
                 ocrStatus.textContent =
                     "✅ Imagen lista para analizar.";
@@ -340,9 +457,9 @@
         );
 
 
-        // ==========================================
-        // MÚSICA
-        // ==========================================
+        /* =====================================
+           MÚSICA DE FONDO
+        ====================================== */
 
         musicBtn.addEventListener(
             "click",
@@ -357,7 +474,9 @@
                         musicBtn.textContent =
                             "🔊 Música: ON";
 
-                    } else {
+                    }
+
+                    else {
 
                         bgMusic.pause();
 
@@ -366,7 +485,9 @@
 
                     }
 
-                } catch (error) {
+                }
+
+                catch (error) {
 
                     console.log(
                         "Error de audio:",
@@ -383,9 +504,9 @@
         );
 
 
-        // ==========================================
-        // DETENER SONIDOS
-        // ==========================================
+        /* =====================================
+           DETENER SONIDOS DE RIESGO
+        ====================================== */
 
         function stopRiskSounds() {
 
@@ -393,6 +514,7 @@
                 lowSound,
                 mediumSound,
                 highSound
+
             ].forEach(
                 function (audio) {
 
@@ -411,9 +533,9 @@
         }
 
 
-        // ==========================================
-        // REPRODUCIR SONIDO
-        // ==========================================
+        /* =====================================
+           REPRODUCIR SONIDO DE RIESGO
+        ====================================== */
 
         async function playRiskSound(audio) {
 
@@ -421,10 +543,13 @@
                 return;
             }
 
+
             stopRiskSounds();
+
 
             audio.currentTime =
                 0;
+
 
             try {
 
@@ -434,7 +559,9 @@
                     "Sonido reproducido."
                 );
 
-            } catch (error) {
+            }
+
+            catch (error) {
 
                 console.log(
                     "El navegador bloqueó el sonido:",
@@ -446,9 +573,9 @@
         }
 
 
-        // ==========================================
-        // ANALIZAR
-        // ==========================================
+        /* =====================================
+           ANALIZAR IMAGEN
+        ====================================== */
 
         analyzeBtn.addEventListener(
             "click",
@@ -457,18 +584,23 @@
                 const file =
                     imageInput.files[0];
 
+
                 if (!file) {
                     return;
                 }
 
+
                 analyzeBtn.disabled =
                     true;
+
 
                 ocrStatus.textContent =
                     "🔍 Analizando texto de la imagen...";
 
+
                 resultCard.style.display =
                     "none";
+
 
                 animationCard.style.display =
                     "none";
@@ -476,11 +608,16 @@
 
                 try {
 
+                    /* =========================
+                       OCR
+                    ========================== */
+
                     const result =
                         await Tesseract.recognize(
                             file,
                             "spa",
                             {
+
                                 logger:
                                     function (info) {
 
@@ -494,14 +631,16 @@
                                                     info.progress * 100
                                                 );
 
+
                                             ocrStatus.textContent =
-                                                "🔍 Reconociendo texto... " +
-                                                progress +
-                                                "%";
+                                                "🔍 Reconociendo texto... "
+                                                + progress
+                                                + "%";
 
                                         }
 
                                     }
+
                             }
                         );
 
@@ -516,17 +655,20 @@
                     );
 
 
-                    // ==========================================
-                    // PUNTUACIÓN
-                    // ==========================================
+                    /* =========================
+                       PUNTUACIÓN
+                    ========================== */
 
                     let score = 0;
 
                     const signals = [];
 
 
+                    /* Correo */
+
                     if (
-                        /[\w.-]+@[\w.-]+\.\w+/.test(text)
+                        /[\w.-]+@[\w.-]+\.\w+/
+                        .test(text)
                     ) {
 
                         score += 1;
@@ -538,8 +680,11 @@
                     }
 
 
+                    /* Teléfono */
+
                     if (
-                        /(\+?\d[\d\s-]{7,}\d)/.test(text)
+                        /(\+?\d[\d\s-]{7,}\d)/
+                        .test(text)
                     ) {
 
                         score += 1;
@@ -551,8 +696,11 @@
                     }
 
 
+                    /* Datos personales */
+
                     if (
-                        /nombre|apellido|dirección|direccion|fecha de nacimiento|curp|datos personales/.test(text)
+                        /nombre|apellido|dirección|direccion|fecha de nacimiento|curp|datos personales/
+                        .test(text)
                     ) {
 
                         score += 2;
@@ -564,8 +712,11 @@
                     }
 
 
+                    /* Contraseña */
+
                     if (
-                        /contraseña|contrasena|password|clave/.test(text)
+                        /contraseña|contrasena|password|clave/
+                        .test(text)
                     ) {
 
                         score += 3;
@@ -577,8 +728,11 @@
                     }
 
 
+                    /* Código */
+
                     if (
-                        /código de seguridad|codigo de seguridad|código de verificación|codigo de verificacion|código otp|codigo otp|token/.test(text)
+                        /código de seguridad|codigo de seguridad|código de verificación|codigo de verificacion|código otp|codigo otp|token/
+                        .test(text)
                     ) {
 
                         score += 3;
@@ -590,8 +744,11 @@
                     }
 
 
+                    /* Información bancaria */
+
                     if (
-                        /tarjeta|número de tarjeta|numero de tarjeta|cuenta bancaria|banco|cvv|nip|transferencia/.test(text)
+                        /tarjeta|número de tarjeta|numero de tarjeta|cuenta bancaria|banco|cvv|nip|transferencia/
+                        .test(text)
                     ) {
 
                         score += 3;
@@ -603,8 +760,11 @@
                     }
 
 
+                    /* Urgencia */
+
                     if (
-                        /urgente|inmediatamente|ahora mismo|última oportunidad|ultima oportunidad|hoy|24 horas|actúa rápido|actua rapido/.test(text)
+                        /urgente|inmediatamente|ahora mismo|última oportunidad|ultima oportunidad|hoy|24 horas|actúa rápido|actua rapido/
+                        .test(text)
                     ) {
 
                         score += 2;
@@ -616,8 +776,11 @@
                     }
 
 
+                    /* Enlaces */
+
                     if (
-                        /https?:\/\/|www\.|\.com|\.net|\.org|enlace|link/.test(text)
+                        /https?:\/\/|www\.|\.com|\.net|\.org|enlace|link/
+                        .test(text)
                     ) {
 
                         score += 2;
@@ -629,8 +792,11 @@
                     }
 
 
+                    /* Cuenta bloqueada */
+
                     if (
-                        /cuenta bloqueada|cuenta suspendida|cuenta será suspendida|cuenta sera suspendida|acceso bloqueado/.test(text)
+                        /cuenta bloqueada|cuenta suspendida|cuenta será suspendida|cuenta sera suspendida|acceso bloqueado/
+                        .test(text)
                     ) {
 
                         score += 2;
@@ -642,8 +808,11 @@
                     }
 
 
+                    /* Verificación */
+
                     if (
-                        /verifica tu cuenta|verificar tu cuenta|verifique su cuenta|verifica tu identidad|verificar identidad/.test(text)
+                        /verifica tu cuenta|verificar tu cuenta|verifique su cuenta|verifica tu identidad|verificar identidad/
+                        .test(text)
                     ) {
 
                         score += 2;
@@ -655,8 +824,11 @@
                     }
 
 
+                    /* Responder */
+
                     if (
-                        /responde a este mensaje|responder a este mensaje|responde este correo|responder este correo/.test(text)
+                        /responde a este mensaje|responder a este mensaje|responde este correo|responder este correo/
+                        .test(text)
                     ) {
 
                         score += 1;
@@ -668,48 +840,64 @@
                     }
 
 
-                    // ==========================================
-                    // RIESGO
-                    // ==========================================
+                    /* =================================
+                       DETERMINAR RIESGO
+                    ================================== */
 
                     let risk;
+
                     let description;
+
                     let selectedSound;
 
+
+                    /* RIESGO BAJO */
 
                     if (score <= 1) {
 
                         risk =
                             "RIESGO BAJO";
 
+
                         description =
                             "🟢 Se detectaron pocas señales relacionadas con phishing. Aun así, revisa cuidadosamente el mensaje.";
+
 
                         selectedSound =
                             lowSound;
 
                     }
 
+
+                    /* RIESGO MEDIO */
+
                     else if (score <= 3) {
 
                         risk =
                             "RIESGO MEDIO";
 
+
                         description =
                             "🟡 Se encontraron algunas señales sospechosas. Es recomendable revisar el mensaje antes de interactuar con él.";
+
 
                         selectedSound =
                             mediumSound;
 
                     }
 
+
+                    /* RIESGO ALTO */
+
                     else {
 
                         risk =
                             "RIESGO ALTO";
 
+
                         description =
                             "🔴 Se detectaron varias señales asociadas con posibles intentos de phishing. Evita proporcionar información y verifica el mensaje mediante una fuente oficial.";
+
 
                         selectedSound =
                             highSound;
@@ -717,15 +905,17 @@
                     }
 
 
-                    // ==========================================
-                    // MOSTRAR RESULTADO
-                    // ==========================================
+                    /* =================================
+                       MOSTRAR RESULTADO
+                    ================================== */
 
                     riskBadge.textContent =
                         risk;
 
+
                     riskDescription.textContent =
                         description;
+
 
                     signalsList.innerHTML =
                         "";
@@ -736,8 +926,10 @@
                         const li =
                             document.createElement("li");
 
+
                         li.textContent =
                             "✅ No se detectaron señales específicas.";
+
 
                         signalsList.appendChild(
                             li
@@ -753,8 +945,10 @@
                                 const li =
                                     document.createElement("li");
 
+
                                 li.textContent =
                                     signal;
+
 
                                 signalsList.appendChild(
                                     li
@@ -766,24 +960,28 @@
                     }
 
 
+                    /* Mostrar */
+
                     resultCard.style.display =
                         "block";
 
+
                     animationCard.style.display =
                         "block";
+
 
                     ocrStatus.textContent =
                         "✅ Análisis terminado.";
 
 
-                    // SONIDO
+                    /* Sonido */
 
                     playRiskSound(
                         selectedSound
                     );
 
 
-                    // ANIMACIÓN
+                    /* Animación */
 
                     playAnimation(
                         risk
@@ -793,7 +991,10 @@
 
                 catch (error) {
 
-                    console.error(error);
+                    console.error(
+                        error
+                    );
+
 
                     ocrStatus.textContent =
                         "❌ Ocurrió un error al analizar la imagen.";
@@ -808,9 +1009,9 @@
         );
 
 
-        // ==========================================
-        // ANIMACIONES
-        // ==========================================
+        /* =====================================
+           ANIMACIONES
+        ====================================== */
 
         function playAnimation(risk) {
 
@@ -833,6 +1034,8 @@
                 document.getElementById("success");
 
 
+            /* Ocultar todo */
+
             fish.style.display =
                 "none";
 
@@ -851,6 +1054,8 @@
             success.style.display =
                 "none";
 
+
+            /* Reiniciar clases */
 
             fish.classList.remove(
                 "swim",
@@ -874,14 +1079,18 @@
             );
 
 
-            // BAJO
+            /* =================================
+               RIESGO BAJO
+            ================================== */
 
             if (
-                risk === "RIESGO BAJO"
+                risk ===
+                "RIESGO BAJO"
             ) {
 
                 fish.style.display =
                     "block";
+
 
                 fish.classList.add(
                     "swim"
@@ -901,14 +1110,18 @@
             }
 
 
-            // MEDIO
+            /* =================================
+               RIESGO MEDIO
+            ================================== */
 
             else if (
-                risk === "RIESGO MEDIO"
+                risk ===
+                "RIESGO MEDIO"
             ) {
 
                 fish.style.display =
                     "block";
+
 
                 fish.classList.add(
                     "swim"
@@ -921,6 +1134,7 @@
                         net.style.display =
                             "block";
 
+
                         net.classList.add(
                             "catchNet"
                         );
@@ -932,12 +1146,15 @@
             }
 
 
-            // ALTO
+            /* =================================
+               RIESGO ALTO
+            ================================== */
 
             else {
 
                 fish.style.display =
                     "block";
+
 
                 fish.classList.add(
                     "swim"
@@ -949,6 +1166,7 @@
 
                         shark.style.display =
                             "block";
+
 
                         shark.classList.add(
                             "sharkAttack"
@@ -965,6 +1183,7 @@
                         explosion.style.display =
                             "block";
 
+
                         explosion.classList.add(
                             "explode"
                         );
@@ -980,14 +1199,18 @@
                         fish.style.display =
                             "none";
 
+
                         shark.style.display =
                             "none";
+
 
                         explosion.style.display =
                             "none";
 
+
                         escapingFish.style.display =
                             "block";
+
 
                         escapingFish.classList.add(
                             "escape"
@@ -1002,9 +1225,9 @@
         }
 
 
-        // ==========================================
-        // REINICIAR
-        // ==========================================
+        /* =====================================
+           REINICIAR
+        ====================================== */
 
         resetBtn.addEventListener(
             "click",
@@ -1013,23 +1236,30 @@
                 imageInput.value =
                     "";
 
+
                 preview.src =
                     "";
+
 
                 previewContainer.style.display =
                     "none";
 
+
                 resultCard.style.display =
                     "none";
+
 
                 animationCard.style.display =
                     "none";
 
+
                 ocrStatus.textContent =
                     "";
 
+
                 analyzeBtn.disabled =
                     true;
+
 
                 stopRiskSounds();
 
@@ -1037,12 +1267,13 @@
         );
 
 
-        // ==========================================
-        // SERVICE WORKER
-        // ==========================================
+        /* =====================================
+           SERVICE WORKER
+        ====================================== */
 
         if (
-            "serviceWorker" in navigator
+            "serviceWorker"
+            in navigator
         ) {
 
             window.addEventListener(
@@ -1051,6 +1282,7 @@
 
                     navigator.serviceWorker
                         .register("./sw.js")
+
                         .then(
                             function () {
 
@@ -1060,6 +1292,7 @@
 
                             }
                         )
+
                         .catch(
                             function (error) {
 
@@ -1079,4 +1312,5 @@
     </script>
 
 </body>
+
 </html>
