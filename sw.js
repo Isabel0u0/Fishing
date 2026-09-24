@@ -1,5 +1,4 @@
-
-const CACHE_NAME = "fishing-v1";
+const CACHE_NAME = "fishing-v2";
 
 const FILES_TO_CACHE = [
     "./",
@@ -9,26 +8,19 @@ const FILES_TO_CACHE = [
 ];
 
 self.addEventListener("install", function (event) {
-
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(function (cache) {
-                return cache.addAll(FILES_TO_CACHE);
-            })
+        caches.open(CACHE_NAME).then(function (cache) {
+            return cache.addAll(FILES_TO_CACHE);
+        })
     );
 
     self.skipWaiting();
 });
 
-
 self.addEventListener("activate", function (event) {
-
     event.waitUntil(
-
         caches.keys().then(function (cacheNames) {
-
             return Promise.all(
-
                 cacheNames
                     .filter(function (cacheName) {
                         return cacheName !== CACHE_NAME;
@@ -36,26 +28,44 @@ self.addEventListener("activate", function (event) {
                     .map(function (cacheName) {
                         return caches.delete(cacheName);
                     })
-
             );
-
         })
-
     );
 
     self.clients.claim();
 });
 
-
 self.addEventListener("fetch", function (event) {
-
     event.respondWith(
-
         fetch(event.request)
             .catch(function () {
-                return caches.match(event.request);
+                return caches.match(event.request, {
+                    ignoreSearch: true
+                }).then(function (response) {
+
+                    if (response) {
+                        return response;
+                    }
+
+                    return caches.match("./").then(function (home) {
+
+                        if (home) {
+                            return home;
+                        }
+
+                        return new Response(
+                            "Fishing no está disponible sin conexión.",
+                            {
+                                status: 503,
+                                headers: {
+                                    "Content-Type": "text/plain; charset=utf-8"
+                                }
+                            }
+                        );
+
+                    });
+
+                });
             })
-
     );
-
 });
